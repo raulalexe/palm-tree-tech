@@ -60,13 +60,240 @@ document.addEventListener('DOMContentLoaded', () => {
         el.classList.add('fade-in');
         observer.observe(el);
     });
+    
+    // Initialize captcha
+    generateCaptcha();
+    
+    // Add refresh captcha functionality
+    const refreshBtn = document.getElementById('refreshCaptcha');
+    if (refreshBtn) {
+        refreshBtn.addEventListener('click', generateCaptcha);
+    }
+    
+    // Initialize form validator
+    formValidator = new FormValidator('contactForm');
 });
+
+// Captcha System
+let captchaAnswer = 0;
+
+function generateCaptcha() {
+    const num1 = Math.floor(Math.random() * 10) + 1;
+    const num2 = Math.floor(Math.random() * 10) + 1;
+    const operators = ['+', '-', '×'];
+    const operator = operators[Math.floor(Math.random() * operators.length)];
+    
+    let question, answer;
+    
+    switch (operator) {
+        case '+':
+            question = `${num1} + ${num2}`;
+            answer = num1 + num2;
+            break;
+        case '-':
+            question = `${num1} - ${num2}`;
+            answer = num1 - num2;
+            break;
+        case '×':
+            question = `${num1} × ${num2}`;
+            answer = num1 * num2;
+            break;
+    }
+    
+    document.getElementById('captchaQuestion').textContent = question;
+    captchaAnswer = answer;
+}
+
+// Enhanced Form Validation
+class FormValidator {
+    constructor(formId) {
+        this.form = document.getElementById(formId);
+        this.fields = {};
+        this.init();
+    }
+    
+    init() {
+        if (!this.form) return;
+        
+        // Define validation rules
+        this.fields = {
+            name: {
+                element: this.form.querySelector('#name'),
+                rules: ['required', 'minLength:2', 'maxLength:50'],
+                errorElement: this.form.querySelector('#name-error')
+            },
+            email: {
+                element: this.form.querySelector('#email'),
+                rules: ['required', 'email'],
+                errorElement: this.form.querySelector('#email-error')
+            },
+            company: {
+                element: this.form.querySelector('#company'),
+                rules: ['maxLength:100'],
+                errorElement: this.form.querySelector('#company-error')
+            },
+            service: {
+                element: this.form.querySelector('#service'),
+                rules: [],
+                errorElement: this.form.querySelector('#service-error')
+            },
+            message: {
+                element: this.form.querySelector('#message'),
+                rules: ['required', 'minLength:10', 'maxLength:1000'],
+                errorElement: this.form.querySelector('#message-error')
+            },
+            captcha: {
+                element: this.form.querySelector('#captcha'),
+                rules: ['required', 'captcha'],
+                errorElement: this.form.querySelector('#captcha-error')
+            }
+        };
+        
+        // Add event listeners
+        this.addEventListeners();
+    }
+    
+    addEventListeners() {
+        Object.keys(this.fields).forEach(fieldName => {
+            const field = this.fields[fieldName];
+            if (field.element) {
+                field.element.addEventListener('blur', () => this.validateField(fieldName));
+                field.element.addEventListener('input', () => this.clearFieldError(fieldName));
+            }
+        });
+    }
+    
+    validateField(fieldName) {
+        const field = this.fields[fieldName];
+        if (!field) return true;
+        
+        const value = field.element.value.trim();
+        const formGroup = field.element.closest('.form-group');
+        
+        // Clear previous states
+        this.clearFieldError(fieldName);
+        
+        // Validate each rule
+        for (const rule of field.rules) {
+            const [ruleName, ruleValue] = rule.split(':');
+            
+            if (!this.validateRule(ruleName, value, ruleValue, fieldName)) {
+                this.showFieldError(fieldName, this.getErrorMessage(ruleName, ruleValue));
+                return false;
+            }
+        }
+        
+        // Show success state
+        this.showFieldSuccess(fieldName);
+        return true;
+    }
+    
+    validateRule(ruleName, value, ruleValue, fieldName) {
+        switch (ruleName) {
+            case 'required':
+                return value.length > 0;
+            case 'email':
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return emailRegex.test(value);
+            case 'minLength':
+                return value.length >= parseInt(ruleValue);
+            case 'maxLength':
+                return value.length <= parseInt(ruleValue);
+            case 'captcha':
+                return parseInt(value) === captchaAnswer;
+            default:
+                return true;
+        }
+    }
+    
+    getErrorMessage(ruleName, ruleValue) {
+        switch (ruleName) {
+            case 'required':
+                return 'This field is required.';
+            case 'email':
+                return 'Please enter a valid email address.';
+            case 'minLength':
+                return `This field must be at least ${ruleValue} characters long.`;
+            case 'maxLength':
+                return `This field must be no more than ${ruleValue} characters long.`;
+            case 'captcha':
+                return 'Please enter the correct answer to the security question.';
+            default:
+                return 'Invalid input.';
+        }
+    }
+    
+    showFieldError(fieldName, message) {
+        const field = this.fields[fieldName];
+        if (!field) return;
+        
+        const formGroup = field.element.closest('.form-group');
+        formGroup.classList.remove('success');
+        formGroup.classList.add('error');
+        
+        if (field.errorElement) {
+            field.errorElement.textContent = message;
+        }
+    }
+    
+    showFieldSuccess(fieldName) {
+        const field = this.fields[fieldName];
+        if (!field) return;
+        
+        const formGroup = field.element.closest('.form-group');
+        formGroup.classList.remove('error');
+        formGroup.classList.add('success');
+    }
+    
+    clearFieldError(fieldName) {
+        const field = this.fields[fieldName];
+        if (!field) return;
+        
+        const formGroup = field.element.closest('.form-group');
+        formGroup.classList.remove('error', 'success');
+        
+        if (field.errorElement) {
+            field.errorElement.textContent = '';
+        }
+    }
+    
+    validateForm() {
+        let isValid = true;
+        
+        Object.keys(this.fields).forEach(fieldName => {
+            if (!this.validateField(fieldName)) {
+                isValid = false;
+            }
+        });
+        
+        return isValid;
+    }
+    
+    resetForm() {
+        Object.keys(this.fields).forEach(fieldName => {
+            this.clearFieldError(fieldName);
+            if (this.fields[fieldName].element) {
+                this.fields[fieldName].element.value = '';
+            }
+        });
+        generateCaptcha();
+    }
+}
+
+// Initialize form validator
+let formValidator;
 
 // Contact Form Handling
 const contactForm = document.getElementById('contactForm');
 if (contactForm) {
     contactForm.addEventListener('submit', async (e) => {
         e.preventDefault();
+        
+        // Validate form before submission
+        if (!formValidator || !formValidator.validateForm()) {
+            showNotification('Please correct the errors in the form before submitting.', 'error');
+            return;
+        }
         
         const submitButton = contactForm.querySelector('button[type="submit"]');
         const originalText = submitButton.textContent;
@@ -85,7 +312,11 @@ if (contactForm) {
             
             // Show success message
             showNotification('Thank you! Your message has been sent successfully. We\'ll get back to you soon.', 'success');
-            contactForm.reset();
+            
+            // Reset form and captcha
+            if (formValidator) {
+                formValidator.resetForm();
+            }
             
         } catch (error) {
             // Show error message
@@ -154,42 +385,7 @@ function showNotification(message, type = 'info') {
     }, 5000);
 }
 
-// Form validation
-function validateForm(form) {
-    const inputs = form.querySelectorAll('input[required], textarea[required]');
-    let isValid = true;
-    
-    inputs.forEach(input => {
-        if (!input.value.trim()) {
-            isValid = false;
-            input.style.borderColor = '#dc3545';
-        } else {
-            input.style.borderColor = '#e9ecef';
-        }
-    });
-    
-    return isValid;
-}
 
-// Add form validation to contact form
-if (contactForm) {
-    const requiredInputs = contactForm.querySelectorAll('input[required], textarea[required]');
-    requiredInputs.forEach(input => {
-        input.addEventListener('blur', () => {
-            if (!input.value.trim()) {
-                input.style.borderColor = '#dc3545';
-            } else {
-                input.style.borderColor = '#2d5a27';
-            }
-        });
-        
-        input.addEventListener('input', () => {
-            if (input.value.trim()) {
-                input.style.borderColor = '#2d5a27';
-            }
-        });
-    });
-}
 
 // Parallax effect for hero section
 window.addEventListener('scroll', () => {
