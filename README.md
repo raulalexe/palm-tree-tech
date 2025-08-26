@@ -10,10 +10,6 @@ A modern, responsive presentation website for Palm Tree Tech LLC, showcasing bes
 - Input sanitization (implement on backend)
 - Regular security updates
 
-## 📞 Support
-
-For technical support or customization requests, contact Palm Tree Tech LLC at info@palmtreetech.com.
-
 ---
 
 **Palm Tree Tech LLC** - Innovative software solutions for the digital age.
