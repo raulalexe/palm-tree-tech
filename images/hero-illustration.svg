@@ -1,0 +1,125 @@
+<svg width="600" height="400" viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Gradients -->
+    <linearGradient id="skyGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#87CEEB;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#E0F6FF;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="palmGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#22c55e;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#16a34a;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="trunkGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#a16207;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#854d0e;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="laptopGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#cbd5e1;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#94a3b8;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="aiGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#8b5cf6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#6366f1;stop-opacity:1" />
+    </linearGradient>
+    
+    <radialGradient id="glowGradient" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#60a5fa;stop-opacity:0.3" />
+      <stop offset="100%" style="stop-color:#60a5fa;stop-opacity:0" />
+    </radialGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="600" height="400" fill="url(#skyGradient)"/>
+  
+  <!-- Floating clouds -->
+  <g opacity="0.7">
+    <ellipse cx="100" cy="80" rx="30" ry="15" fill="white"/>
+    <ellipse cx="130" cy="80" rx="20" ry="10" fill="white"/>
+    <ellipse cx="500" cy="60" rx="25" ry="12" fill="white"/>
+    <ellipse cx="470" cy="60" rx="15" ry="8" fill="white"/>
+  </g>
+  
+  <!-- Palm tree trunk -->
+  <rect x="280" y="200" width="40" height="120" fill="url(#trunkGradient)" rx="5"/>
+  
+  <!-- Palm tree fronds -->
+  <g fill="url(#palmGradient)">
+    <!-- Main fronds -->
+    <ellipse cx="300" cy="180" rx="60" ry="15" transform="rotate(-20 300 180)"/>
+    <ellipse cx="300" cy="170" rx="55" ry="12" transform="rotate(10 300 170)"/>
+    <ellipse cx="300" cy="160" rx="50" ry="10" transform="rotate(-10 300 160)"/>
+    <ellipse cx="300" cy="150" rx="45" ry="8" transform="rotate(25 300 150)"/>
+    <ellipse cx="300" cy="140" rx="40" ry="6" transform="rotate(-15 300 140)"/>
+    
+    <!-- Side fronds -->
+    <ellipse cx="250" cy="170" rx="35" ry="8" transform="rotate(-45 250 170)"/>
+    <ellipse cx="350" cy="170" rx="35" ry="8" transform="rotate(45 350 170)"/>
+    <ellipse cx="240" cy="150" rx="25" ry="6" transform="rotate(-60 240 150)"/>
+    <ellipse cx="360" cy="150" rx="25" ry="6" transform="rotate(60 360 150)"/>
+  </g>
+  
+  <!-- Laptop base -->
+  <rect x="120" y="280" width="120" height="15" fill="url(#laptopGradient)" rx="3"/>
+  
+  <!-- Laptop screen -->
+  <rect x="125" y="220" width="110" height="65" fill="#1e293b" rx="3"/>
+  <rect x="130" y="225" width="100" height="55" fill="#0f172a" rx="2"/>
+  
+  <!-- Code on laptop screen -->
+  <g font-family="monospace" font-size="8" fill="#e2e8f0">
+    <text x="140" y="240" fill="#22c55e">function</text>
+    <text x="140" y="250" fill="#e2e8f0">  createApp() {</text>
+    <text x="140" y="260" fill="#a855f7">    return</text>
+    <text x="140" y="270" fill="#60a5fa">      &lt;div&gt;</text>
+    <text x="140" y="280" fill="#f59e0b">        Hello World</text>
+  </g>
+  
+  <!-- AI/Neural Network visualization -->
+  <g transform="translate(400, 200)">
+    <!-- Nodes -->
+    <circle cx="0" cy="0" r="8" fill="url(#aiGradient)"/>
+    <circle cx="40" cy="-20" r="6" fill="url(#aiGradient)"/>
+    <circle cx="40" cy="20" r="6" fill="url(#aiGradient)"/>
+    <circle cx="80" cy="-30" r="5" fill="url(#aiGradient)"/>
+    <circle cx="80" cy="0" r="5" fill="url(#aiGradient)"/>
+    <circle cx="80" cy="30" r="5" fill="url(#aiGradient)"/>
+    
+    <!-- Connections -->
+    <line x1="0" y1="0" x2="40" y2="-20" stroke="#8b5cf6" stroke-width="2" opacity="0.6"/>
+    <line x1="0" y1="0" x2="40" y2="20" stroke="#8b5cf6" stroke-width="2" opacity="0.6"/>
+    <line x1="40" y1="-20" x2="80" y2="-30" stroke="#8b5cf6" stroke-width="1.5" opacity="0.4"/>
+    <line x1="40" y1="-20" x2="80" y2="0" stroke="#8b5cf6" stroke-width="1.5" opacity="0.4"/>
+    <line x1="40" y1="20" x2="80" y2="0" stroke="#8b5cf6" stroke-width="1.5" opacity="0.4"/>
+    <line x1="40" y1="20" x2="80" y2="30" stroke="#8b5cf6" stroke-width="1.5" opacity="0.4"/>
+    
+    <!-- Glow effect -->
+    <circle cx="0" cy="0" r="15" fill="url(#glowGradient)"/>
+  </g>
+  
+  <!-- Floating data particles -->
+  <g opacity="0.6">
+    <circle cx="80" cy="100" r="2" fill="#60a5fa"/>
+    <circle cx="520" cy="120" r="1.5" fill="#60a5fa"/>
+    <circle cx="150" cy="80" r="1" fill="#60a5fa"/>
+    <circle cx="480" cy="200" r="2" fill="#60a5fa"/>
+    <circle cx="200" cy="150" r="1.5" fill="#60a5fa"/>
+    <circle cx="450" cy="100" r="1" fill="#60a5fa"/>
+  </g>
+  
+  <!-- Grass/ground -->
+  <g fill="#22c55e" opacity="0.8">
+    <ellipse cx="200" cy="320" rx="40" ry="8"/>
+    <ellipse cx="300" cy="320" rx="50" ry="10"/>
+    <ellipse cx="400" cy="320" rx="35" ry="7"/>
+  </g>
+  
+  <!-- Sun rays -->
+  <g opacity="0.3" fill="#fbbf24">
+    <path d="M50 50 L70 50 M50 50 L50 70 M50 50 L70 70 M50 50 L30 70"/>
+    <circle cx="50" cy="50" r="15" fill="none" stroke="#fbbf24" stroke-width="2"/>
+  </g>
+</svg>
