@@ -458,6 +458,108 @@ body {
     min-height: 120px;
 }
 
+/* Captcha Styles */
+.captcha-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.captcha-challenge {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: #f8f9fa;
+    padding: 0.75rem;
+    border-radius: 8px;
+    border: 2px solid #e9ecef;
+}
+
+.captcha-challenge span {
+    font-weight: 600;
+    color: #2d5a27;
+    font-size: 1.1rem;
+    min-width: 80px;
+}
+
+.captcha-challenge input {
+    flex: 1;
+    border: none;
+    background: transparent;
+    padding: 0.5rem;
+    font-size: 1rem;
+    outline: none;
+}
+
+.captcha-challenge input:focus {
+    border: none;
+    background: white;
+    border-radius: 4px;
+}
+
+.btn-refresh {
+    background: #2d5a27;
+    color: white;
+    border: none;
+    padding: 0.75rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 44px;
+    height: 44px;
+}
+
+.btn-refresh:hover {
+    background: #1e3f1a;
+}
+
+.btn-refresh i {
+    font-size: 1rem;
+}
+
+/* Form validation styles */
+.form-group.error input,
+.form-group.error select,
+.form-group.error textarea,
+.form-group.error .captcha-challenge {
+    border-color: #dc3545;
+    box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
+}
+
+.form-group.success input,
+.form-group.success select,
+.form-group.success textarea,
+.form-group.success .captcha-challenge {
+    border-color: #28a745;
+    box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
+}
+
+.error-message {
+    color: #dc3545;
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+    display: none;
+}
+
+.form-group.error .error-message {
+    display: block;
+}
+
+.success-message {
+    color: #28a745;
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+    display: none;
+}
+
+.form-group.success .success-message {
+    display: block;
+}
+
 /* Footer */
 .footer {
     background: #2d5a27;
