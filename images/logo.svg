@@ -1,0 +1,88 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background circle with digital elements -->
+  <defs>
+    <radialGradient id="bgGradient" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#1a365d;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0f2027;stop-opacity:1" />
+    </radialGradient>
+    <linearGradient id="palmGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#22c55e;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#16a34a;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="trunkGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#a16207;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#854d0e;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="laptopGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#cbd5e1;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#94a3b8;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background circle -->
+  <circle cx="100" cy="100" r="90" fill="url(#bgGradient)" stroke="#3b82f6" stroke-width="2"/>
+  
+  <!-- Digital elements in background -->
+  <g opacity="0.3">
+    <!-- Circuit lines -->
+    <path d="M30 60 L70 60 L70 80 L110 80" stroke="#60a5fa" stroke-width="1" fill="none"/>
+    <path d="M130 40 L170 40 L170 60 L150 60" stroke="#60a5fa" stroke-width="1" fill="none"/>
+    <path d="M40 120 L80 120 L80 140 L120 140" stroke="#60a5fa" stroke-width="1" fill="none"/>
+    
+    <!-- Glowing dots -->
+    <circle cx="70" cy="60" r="2" fill="#60a5fa"/>
+    <circle cx="170" cy="40" r="2" fill="#60a5fa"/>
+    <circle cx="80" cy="120" r="2" fill="#60a5fa"/>
+    <circle cx="120" cy="140" r="2" fill="#60a5fa"/>
+    
+    <!-- City/skyscraper elements -->
+    <rect x="25" y="70" width="3" height="15" fill="#60a5fa"/>
+    <rect x="30" y="75" width="3" height="10" fill="#60a5fa"/>
+    <rect x="35" y="80" width="3" height="5" fill="#60a5fa"/>
+    
+    <rect x="160" y="50" width="3" height="20" fill="#60a5fa"/>
+    <rect x="165" y="55" width="3" height="15" fill="#60a5fa"/>
+    <rect x="170" y="60" width="3" height="10" fill="#60a5fa"/>
+  </g>
+  
+  <!-- Palm tree trunk -->
+  <rect x="95" y="120" width="10" height="40" fill="url(#trunkGradient)" rx="2"/>
+  
+  <!-- Palm tree fronds -->
+  <g fill="url(#palmGradient)">
+    <!-- Main fronds -->
+    <ellipse cx="100" cy="110" rx="25" ry="8" transform="rotate(-15 100 110)"/>
+    <ellipse cx="100" cy="105" rx="22" ry="7" transform="rotate(15 100 105)"/>
+    <ellipse cx="100" cy="100" rx="20" ry="6" transform="rotate(-5 100 100)"/>
+    <ellipse cx="100" cy="95" rx="18" ry="5" transform="rotate(25 100 95)"/>
+    <ellipse cx="100" cy="90" rx="15" ry="4" transform="rotate(-20 100 90)"/>
+    
+    <!-- Side fronds -->
+    <ellipse cx="85" cy="105" rx="12" ry="4" transform="rotate(-45 85 105)"/>
+    <ellipse cx="115" cy="105" rx="12" ry="4" transform="rotate(45 115 105)"/>
+  </g>
+  
+  <!-- Laptop base -->
+  <rect x="70" y="150" width="60" height="8" fill="url(#laptopGradient)" rx="2"/>
+  
+  <!-- Laptop screen -->
+  <rect x="75" y="120" width="50" height="35" fill="#1e293b" rx="2"/>
+  <rect x="77" y="122" width="46" height="31" fill="#0f172a" rx="1"/>
+  
+  <!-- Code on screen -->
+  <g font-family="monospace" font-size="3" fill="#e2e8f0">
+    <text x="80" y="130" fill="#22c55e">function</text>
+    <text x="80" y="135" fill="#e2e8f0">  createApp() {</text>
+    <text x="80" y="140" fill="#a855f7">    return</text>
+    <text x="80" y="145" fill="#60a5fa">      &lt;div&gt;</text>
+    <text x="80" y="150" fill="#f59e0b">        Hello World</text>
+    <text x="80" y="155" fill="#60a5fa">      &lt;/div&gt;</text>
+  </g>
+  
+  <!-- Grass/foliage at bottom -->
+  <g fill="#22c55e" opacity="0.8">
+    <ellipse cx="85" cy="195" rx="8" ry="3"/>
+    <ellipse cx="100" cy="195" rx="10" ry="4"/>
+    <ellipse cx="115" cy="195" rx="8" ry="3"/>
+  </g>
+</svg>
