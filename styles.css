@@ -51,9 +51,11 @@ body {
     color: #2d5a27;
 }
 
-.nav-logo i {
+.logo-image {
+    height: 40px;
+    width: auto;
     margin-right: 0.5rem;
-    font-size: 1.8rem;
+    object-fit: contain;
 }
 
 .nav-menu {
@@ -498,9 +500,11 @@ body {
     margin-bottom: 1rem;
 }
 
-.footer-logo i {
+.footer-logo .logo-image {
+    height: 30px;
+    width: auto;
     margin-right: 0.5rem;
-    font-size: 1.5rem;
+    object-fit: contain;
 }
 
 .footer-section h4 {
@@ -540,6 +544,14 @@ body {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+    .logo-image {
+        height: 35px;
+    }
+    
+    .footer-logo .logo-image {
+        height: 25px;
+    }
+    
     .hamburger {
         display: flex;
     }
