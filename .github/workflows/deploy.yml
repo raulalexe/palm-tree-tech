@@ -1,4 +1,4 @@
-name: Deploy to GitHub Pages
+name: Deploy to GitHub Pages (Optimized)
 
 on:
   push:
@@ -15,7 +15,7 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  deploy:
+  build-and-deploy:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -23,6 +23,66 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+      
+      - name: Install minification tools
+        run: |
+          npm install -g clean-css-cli terser html-minifier-terser
+      
+      - name: Minify CSS
+        run: |
+          echo "🎨 Minifying CSS files..."
+          cleancss -o styles.min.css styles.css
+          echo "✅ CSS minified successfully"
+          ls -lh styles*.css
+      
+      - name: Minify JavaScript
+        run: |
+          echo "⚡ Minifying JavaScript files..."
+          terser script.js -o script.min.js -c -m
+          echo "✅ JavaScript minified successfully"
+          ls -lh script*.js
+      
+      - name: Minify HTML
+        run: |
+          echo "📄 Minifying HTML files..."
+          html-minifier-terser --collapse-whitespace --remove-comments --minify-css --minify-js -o index.min.html index.html
+          html-minifier-terser --collapse-whitespace --remove-comments --minify-css --minify-js -o privacy.min.html privacy.html
+          echo "✅ HTML files minified successfully"
+          ls -lh *.html
+      
+      - name: Update HTML to use minified files
+        run: |
+          echo "🔗 Updating HTML to reference minified files..."
+          # Create backup of original files
+          cp index.html index.original.html
+          cp privacy.html privacy.original.html
+          
+          # Replace references in minified HTML
+          sed -i 's/styles\.css/styles.min.css/g' index.min.html
+          sed -i 's/script\.js/script.min.js/g' index.min.html
+          sed -i 's/styles\.css/styles.min.css/g' privacy.min.html
+          
+          # Replace original files with minified versions
+          mv index.min.html index.html
+          mv privacy.min.html privacy.html
+          
+          echo "✅ HTML files updated to use minified assets"
+      
+      - name: Show file size comparison
+        run: |
+          echo "📊 File size comparison:"
+          echo "CSS:"
+          ls -lh styles*.css
+          echo "JavaScript:"
+          ls -lh script*.js
+          echo "HTML:"
+          ls -lh *.html
       
       - name: Setup Pages
         uses: actions/configure-pages@v4

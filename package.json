@@ -1,0 +1,35 @@
+{
+  "name": "palm-tree-tech-website",
+  "version": "1.0.0",
+  "description": "Palm Tree Tech LLC - Bespoke Software Development & AI Consultancy Website",
+  "main": "index.html",
+  "scripts": {
+    "minify": "npm run minify:css && npm run minify:js && npm run minify:html",
+    "minify:css": "cleancss -o styles.min.css styles.css",
+    "minify:js": "terser script.js -o script.min.js -c -m",
+    "minify:html": "html-minifier-terser --collapse-whitespace --remove-comments --minify-css --minify-js -o index.min.html index.html && html-minifier-terser --collapse-whitespace --remove-comments --minify-css --minify-js -o privacy.min.html privacy.html",
+    "build": "npm run minify && npm run update-references",
+    "update-references": "sed -i 's/styles\\.css/styles.min.css/g' index.min.html && sed -i 's/script\\.js/script.min.js/g' index.min.html && sed -i 's/styles\\.css/styles.min.css/g' privacy.min.html",
+    "dev": "python3 -m http.server 8000",
+    "serve": "python3 -m http.server 8000"
+  },
+  "devDependencies": {
+    "clean-css-cli": "^5.6.2",
+    "terser": "^5.24.0",
+    "html-minifier-terser": "^7.2.0"
+  },
+  "keywords": [
+    "website",
+    "software-development",
+    "ai-consultancy",
+    "saas",
+    "technology-consulting"
+  ],
+  "author": "Palm Tree Tech LLC",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/palm-tree-tech-website.git"
+  },
+  "homepage": "https://your-username.github.io/palm-tree-tech-website"
+}
