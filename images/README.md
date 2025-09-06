@@ -1,37 +1,48 @@
-# Logo Upload Instructions
+# Images Directory
 
-## How to Add Your Custom Logo
+This directory contains optimized images for the Palm Tree Tech website.
 
-1. **Upload your logo file** to this `images` folder
-2. **Rename it to `logo.png`** (or update the HTML to match your filename)
-3. **Recommended formats:**
-   - PNG (transparent background recommended)
-   - SVG (scalable, best quality)
-   - JPG (if no transparency needed)
+## Optimized Images
 
-## Logo Specifications
+### Logo Images
+- `logo-optimized.png` (51KB) - Optimized PNG version
+- `logo-optimized.webp` (11KB) - WebP version for modern browsers
+- `logo.png` (1.3MB) - Original file (kept for reference)
 
-- **Recommended size:** 200x200px or larger
-- **Format:** PNG with transparent background
-- **Filename:** `logo.png`
-- **Aspect ratio:** Square or rectangular (will be resized automatically)
+### Hero Images  
+- `hero-optimized.png` (647KB) - Optimized PNG version
+- `hero-optimized.webp` (69KB) - WebP version for modern browsers
+- `hero.png` (2.1MB) - Original file (kept for reference)
 
-## Alternative Filenames
+## Performance Improvements
 
-If you want to use a different filename, update these lines in `index.html`:
-- Line 17: `<img src="images/YOUR_LOGO_FILE" alt="Palm Tree Tech LLC Logo" class="logo-image">`
-- Line 229: `<img src="images/YOUR_LOGO_FILE" alt="Palm Tree Tech LLC Logo" class="logo-image">`
+The images have been optimized for web performance:
 
-## Logo Styling
+- **Logo**: 96.2% size reduction (1.3MB → 51KB PNG, 11KB WebP)
+- **Hero**: 69.7% size reduction (2.1MB → 647KB PNG, 68KB WebP)
 
-The logo will be automatically:
-- Resized to 40px height in navigation
-- Resized to 30px height in footer
-- Responsive on mobile devices
-- Maintained aspect ratio
+## Browser Support
 
-## Example Logo Files
+The HTML uses `<picture>` elements with WebP fallbacks:
+- Modern browsers: Load WebP format (smallest file size)
+- Older browsers: Fall back to optimized PNG format
+- All browsers: Get significantly smaller files than original
 
-- `logo.png` - Main logo file
-- `logo.svg` - Vector version (if available)
-- `logo-white.png` - White version for dark backgrounds
+## How to Update Images
+
+1. Replace the original files (`logo.png`, `hero.png`)
+2. Run the optimization script to create new optimized versions
+3. The HTML will automatically use the optimized versions
+
+## File Structure
+
+```
+images/
+├── logo.png (original)
+├── logo-optimized.png (optimized PNG)
+├── logo-optimized.webp (WebP version)
+├── hero.png (original)
+├── hero-optimized.png (optimized PNG)
+├── hero-optimized.webp (WebP version)
+└── README.md (this file)
+```
