@@ -5,6 +5,17 @@
     box-sizing: border-box;
 }
 
+/* Performance optimizations */
+* {
+    will-change: auto;
+}
+
+.service-card,
+.hero-illustration,
+.navbar {
+    will-change: transform;
+}
+
 html {
     scroll-behavior: smooth;
 }
@@ -56,6 +67,8 @@ body {
     width: auto;
     margin-right: 0.5rem;
     object-fit: contain;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
 }
 
 .nav-menu {
@@ -191,6 +204,8 @@ body {
     height: auto;
     filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.1));
     animation: gentle-float 8s ease-in-out infinite;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
 }
 
 @keyframes gentle-float {

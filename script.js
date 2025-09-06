@@ -27,8 +27,21 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Navbar background change on scroll
-window.addEventListener('scroll', () => {
+// Debounce function for performance optimization
+function debounce(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+        const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
+}
+
+// Navbar background change on scroll (debounced for performance)
+const handleNavbarScroll = debounce(() => {
     const navbar = document.querySelector('.navbar');
     if (window.scrollY > 100) {
         navbar.style.background = 'rgba(255, 255, 255, 0.98)';
@@ -37,7 +50,9 @@ window.addEventListener('scroll', () => {
         navbar.style.background = 'rgba(255, 255, 255, 0.95)';
         navbar.style.boxShadow = 'none';
     }
-});
+}, 10);
+
+window.addEventListener('scroll', handleNavbarScroll);
 
 // Intersection Observer for fade-in animations
 const observerOptions = {
@@ -387,15 +402,17 @@ function showNotification(message, type = 'info') {
 
 
 
-// Parallax effect for hero section
-window.addEventListener('scroll', () => {
+// Parallax effect for hero section (debounced for performance)
+const handleParallaxScroll = debounce(() => {
     const scrolled = window.pageYOffset;
     const hero = document.querySelector('.hero');
     if (hero) {
         const rate = scrolled * -0.5;
         hero.style.transform = `translateY(${rate}px)`;
     }
-});
+}, 16); // ~60fps
+
+window.addEventListener('scroll', handleParallaxScroll);
 
 // Service cards hover effect enhancement
 document.querySelectorAll('.service-card').forEach(card => {
@@ -434,8 +451,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-// Add active state to navigation links based on scroll position
-window.addEventListener('scroll', () => {
+// Add active state to navigation links based on scroll position (debounced)
+const handleNavActiveScroll = debounce(() => {
     const sections = document.querySelectorAll('section[id]');
     const navLinks = document.querySelectorAll('.nav-link');
     
@@ -454,7 +471,9 @@ window.addEventListener('scroll', () => {
             link.classList.add('active');
         }
     });
-});
+}, 100);
+
+window.addEventListener('scroll', handleNavActiveScroll);
 
 // Add CSS for active navigation state
 const style = document.createElement('style');

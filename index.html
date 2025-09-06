@@ -6,15 +6,18 @@
     <title>Palm Tree Tech LLC - Bespoke Software Development & AI Consultancy</title>
     <meta name="description" content="Palm Tree Tech LLC offers bespoke software development, AI consultancy, and innovative SaaS solutions. Professional software services for modern businesses.">
     <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"></noscript>
 </head>
 <body>
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
             <div class="nav-logo">
-                <img src="images/logo.png" alt="Palm Tree Tech LLC Logo" class="logo-image">
+                <img src="images/logo.png" alt="Palm Tree Tech LLC Logo" class="logo-image" loading="eager">
                 <span>Palm Tree Tech</span>
             </div>
             <ul class="nav-menu">
@@ -43,7 +46,7 @@
                 </div>
             </div>
             <div class="hero-image">
-                <img src="images/hero.png" alt="Tropical Tech Hero Illustration" class="hero-illustration">
+                <img src="images/hero.png" alt="Tropical Tech Hero Illustration" class="hero-illustration" loading="eager">
             </div>
         </div>
     </section>
@@ -93,6 +96,19 @@
                         <li>MVP Development</li>
                         <li>Scalable Architecture</li>
                         <li>Continuous Innovation</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3>Technology Consultancy & Coaching</h3>
+                    <p>Strategic guidance to help you choose and implement the right technology solutions within your budget constraints. We provide expert coaching on technology adoption and digital transformation.</p>
+                    <ul>
+                        <li>Technology Strategy & Planning</li>
+                        <li>Budget-Conscious Tech Solutions</li>
+                        <li>Digital Transformation Coaching</li>
+                        <li>Technology Training & Mentoring</li>
                     </ul>
                 </div>
             </div>
@@ -192,6 +208,7 @@
                                 <option value="bespoke-development">Bespoke Software Development</option>
                                 <option value="ai-consultancy">AI & Software Consultancy</option>
                                 <option value="saas-products">SaaS Product Development</option>
+                                <option value="tech-consultancy">Technology Consultancy & Coaching</option>
                                 <option value="other">Other</option>
                             </select>
                             <div class="error-message" id="service-error"></div>
@@ -227,7 +244,7 @@
             <div class="footer-content">
                 <div class="footer-section">
                     <div class="footer-logo">
-                        <img src="images/logo.png" alt="Palm Tree Tech LLC Logo" class="logo-image">
+                        <img src="images/logo.png" alt="Palm Tree Tech LLC Logo" class="logo-image" loading="lazy">
                         <span>Palm Tree Tech LLC</span>
                     </div>
                     <p>Innovative software solutions for the digital age. We help businesses thrive through bespoke development, AI consultancy, and innovative SaaS products.</p>
@@ -238,6 +255,7 @@
                         <li><a href="#services">Bespoke Software Development</a></li>
                         <li><a href="#services">AI & Software Consultancy</a></li>
                         <li><a href="#services">SaaS Product Development</a></li>
+                        <li><a href="#services">Technology Consultancy & Coaching</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
